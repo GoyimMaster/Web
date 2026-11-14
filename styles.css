@@ -179,6 +179,7 @@ form.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#FBF
 .form-note{grid-column:1/-1;font-size:14px;color:var(--muted);min-height:1.4em}.form-note.ok{color:#1F7A3A;font-weight:700}.form-note.bad{color:var(--red);font-weight:700}
 .cal-inline{min-height:680px;border-radius:20px;overflow:hidden;background:#FBF8F2;border:1px solid var(--line)}
 .cal-inline:has(.cal-none){min-height:0}
+.cal-inline{height:700px}.cal-inline:has(.cal-none){height:auto}.cal-inline iframe{display:block;width:100%!important;height:100%!important;min-height:700px;border:0}
 .dark-top .head:not(.solid){color:var(--marble)}.dark-top .head:not(.solid) .nav a:hover,.dark-top .head:not(.solid) .nav a[aria-current]{background:rgba(255,255,255,.12)}.dark-top .head:not(.solid) .btn.sm{background:var(--marble);color:var(--ink)}
 .cal-none{padding:40px 28px;color:var(--muted)}
 .facts{display:grid;gap:0;margin-top:26px}

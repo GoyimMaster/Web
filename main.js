@@ -83,7 +83,7 @@
   if (box) { const close = () => { box.querySelector('.lb-body').innerHTML = ''; }; box.addEventListener('close', close); box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.lb-x')) box.close(); }); }
 
   /* Calendly: popup on [data-calendly], inline on .cal-inline; without a link, buttons lead to the form */
-  const cal = S.calendly;
+  const cal = S.calendly ? S.calendly + (S.calendly.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1&primary_color=ff2e88' : '';
   const loadCal = () => new Promise((res) => {
     if (window.Calendly) return res();
     const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'https://assets.calendly.com/assets/external/widget.css'; document.head.appendChild(l);
