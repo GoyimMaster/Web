@@ -1,75 +1,155 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-type="service">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Studious · Image ads for GTA businesses</title>
-<meta name="description" content="AI Studious makes image ads for businesses in the Greater Toronto Area. Several versions of each ad, so you can keep the one that works.">
-<style>
-  :root { --bg:#0E0B16; --card:#17121F; --text:#F4F4F5; --muted:#D4D4D8; --soft:#C4B5FD; --a:#8B5CF6; --b:#EC4899; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:880px; margin:0 auto; padding:0 20px; }
-  header { padding:28px 0; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-  .logo { font-weight:800; font-size:22px; letter-spacing:-.02em; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-  .btn { display:inline-block; padding:11px 20px; border-radius:999px; background:linear-gradient(90deg,var(--a),var(--b)); color:#fff; font-weight:600; text-decoration:none; }
-  .btn.ghost { background:none; border:1px solid #3F3A4A; color:var(--text); }
-  .hero { padding:64px 0 48px; }
-  .eyebrow { color:var(--soft); font-size:14px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
-  h1 { font-size:clamp(34px,6vw,54px); line-height:1.1; letter-spacing:-.03em; margin:12px 0 18px; }
-  .lead { color:var(--muted); font-size:19px; max-width:620px; }
-  .cta { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
-  section { padding:40px 0; border-top:1px solid #241E2E; }
-  h2 { font-size:24px; margin-bottom:18px; letter-spacing:-.02em; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .card { background:var(--card); border:1px solid #241E2E; border-radius:14px; padding:20px; }
-  .card b { display:block; margin-bottom:6px; }
-  .card p, li { color:var(--muted); }
-  ol { padding-left:20px; } li { margin:8px 0; }
-  footer { padding:36px 0 48px; color:#8E8A99; font-size:14px; border-top:1px solid #241E2E; }
-  a { color:var(--soft); }
-</style>
+<title>AI Studious · Image ads for GTA businesses, in more than one version</title>
+<meta name="description" content="AI Studious makes image ads for gyms, studios and local businesses in the Greater Toronto Area. Several versions of every ad, so you keep the one your customers respond to.">
+<meta name="theme-color" content="#0B0A10">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <div class="logo">AI Studious</div>
-    <a class="btn ghost" href="mailto:contact@aistudious.ca">Contact</a>
-  </header>
+<header class="nav" id="top">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="AI Studious home"><span class="brand-mark" aria-hidden="true"></span>AI Studious</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#versions">Why versions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-small" href="mailto:contact@aistudious.ca?subject=Free%20sample%20ad">Free sample</a>
+  </div>
+</header>
 
-  <div class="hero">
-    <div class="eyebrow">Ad studio · Greater Toronto Area</div>
-    <h1>Image ads for local businesses, in more than one version.</h1>
-    <p class="lead">We make image ads for gyms, studios and other GTA businesses. You get several versions of each ad, each with a different look, so you can see which one your customers respond to.</p>
-    <div class="cta">
-      <a class="btn" href="mailto:contact@aistudious.ca?subject=Ads%20for%20my%20business">Ask for a free sample</a>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow reveal">Ad studio · Greater Toronto Area</p>
+        <h1 class="reveal" style="--d:80ms">One message.<br><em>Many</em> versions.</h1>
+        <p class="lead reveal" style="--d:160ms">We make image ads for gyms, studios and local businesses. Every ad comes in several versions, each with its own hook, layout and colour, so you keep the one your customers actually respond to.</p>
+        <div class="cta-row reveal" style="--d:240ms">
+          <a class="btn" href="mailto:contact@aistudious.ca?subject=Free%20sample%20ad">Ask for a free sample</a>
+          <a class="link-arrow" href="#how">See how it works <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="deck-wrap reveal" style="--d:200ms" aria-label="Example: four versions of one ad">
+        <div class="deck" id="deck">
+          <article class="ad ad-a">
+            <span class="ad-tag">Version A</span>
+            <div class="ad-art art-sun" aria-hidden="true"></div>
+            <h3>Your first class<br>is on us.</h3>
+            <p>Book online in under a minute.</p>
+            <span class="ad-btn">Book now</span>
+          </article>
+          <article class="ad ad-b">
+            <span class="ad-tag">Version B</span>
+            <div class="ad-art art-grid" aria-hidden="true"></div>
+            <h3>Stronger by Friday.</h3>
+            <p>Small groups. Real coaches.</p>
+            <span class="ad-btn">Try a class</span>
+          </article>
+          <article class="ad ad-c">
+            <span class="ad-tag">Version C</span>
+            <div class="ad-art art-wave" aria-hidden="true"></div>
+            <h3>New here?<br><em>Start easy.</em></h3>
+            <p>Beginner sessions every week.</p>
+            <span class="ad-btn">See times</span>
+          </article>
+          <article class="ad ad-d">
+            <span class="ad-tag">Version D</span>
+            <div class="ad-art art-ring" aria-hidden="true"></div>
+            <h3>6 a.m. or 9 p.m.<br>We're open.</h3>
+            <p>Classes that fit your day.</p>
+            <span class="ad-btn">Pick a time</span>
+          </article>
+        </div>
+        <div class="deck-meta">
+          <span class="dot-row" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="deck-note">Example ad for a made-up gym · #MadeWithAI</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Boxing gyms</span><span>Pilates studios</span><span>Martial arts academies</span><span>Yoga studios</span><span>Restaurants</span><span>Bookshops</span><span>Jewellers</span><span>Personal trainers</span>
+      <span>Boxing gyms</span><span>Pilates studios</span><span>Martial arts academies</span><span>Yoga studios</span><span>Restaurants</span><span>Bookshops</span><span>Jewellers</span><span>Personal trainers</span>
     </div>
   </div>
 
-  <section>
-    <h2>What we make</h2>
-    <div class="grid">
-      <div class="card"><b>Image ads</b><p>Ready for Instagram and Facebook, built from your own business, offers and style.</p></div>
-      <div class="card"><b>Several versions</b><p>Different hooks, layouts and colours for the same message, so you are not guessing with one design.</p></div>
-      <div class="card"><b>Clear labelling</b><p>Our ads are made with AI tools and carry a #MadeWithAI label. We never pass AI people off as your real members or customers.</p></div>
+  <section class="section" id="how">
+    <div class="wrap">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="reveal" style="--d:60ms">Three steps. <em>No contract to try it.</em></h2>
+      <ol class="steps">
+        <li class="step reveal" style="--d:0ms">
+          <span class="step-n">01</span>
+          <h3>Tell us what to promote</h3>
+          <p>A class, an offer, a new location. Your business name is enough to start.</p>
+        </li>
+        <li class="step reveal" style="--d:100ms">
+          <span class="step-n">02</span>
+          <h3>Get a free sample</h3>
+          <p>We make one ad from your own public brand: your colours, your style, your words.</p>
+        </li>
+        <li class="step reveal" style="--d:200ms">
+          <span class="step-n">03</span>
+          <h3>Keep what works</h3>
+          <p>Like it? We make the full set of versions, ready for Instagram and Facebook.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <section>
-    <h2>How it works</h2>
-    <ol>
-      <li>Send us your business name and what you want to promote.</li>
-      <li>We send back a free sample ad based on your public brand.</li>
-      <li>If you like it, we make the full set of versions for you to run.</li>
-    </ol>
+  <section class="section section-alt" id="versions">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow reveal">Why versions</p>
+        <h2 class="reveal" style="--d:60ms">One design is a guess. <em>Five is a test.</em></h2>
+        <p class="lead reveal" style="--d:120ms">The same offer can land or vanish depending on the first three words and the first colour people see. So you never get just one ad from us.</p>
+        <ul class="checks reveal" style="--d:180ms">
+          <li>Different hooks for the same message</li>
+          <li>Different layouts and colours, not one template recoloured</li>
+          <li>Sized for feeds and stories</li>
+        </ul>
+      </div>
+      <div class="variants reveal" style="--d:120ms" aria-label="Example hooks for one offer">
+        <div class="variant v1"><span>Hook 1</span><strong>Your first class is on us.</strong></div>
+        <div class="variant v2"><span>Hook 2</span><strong>Stronger by Friday.</strong></div>
+        <div class="variant v3"><span>Hook 3</span><strong>New here? Start easy.</strong></div>
+        <div class="variant v4"><span>Hook 4</span><strong>Classes that fit your day.</strong></div>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Talk to us</h2>
-    <p class="lead">Email <a href="mailto:contact@aistudious.ca">contact@aistudious.ca</a>. A real person reads and answers every message.</p>
+  <section class="section" id="honest">
+    <div class="wrap honest reveal">
+      <h2>Made with AI. <em>Labelled as AI.</em></h2>
+      <p>Our ads are made with AI tools and carry a #MadeWithAI label. We never pass AI people off as your real members or customers, and we build every ad from your own brand and offers.</p>
+    </div>
   </section>
 
-  <footer>© 2026 AI Studious · Greater Toronto Area, Ontario</footer>
-</div>
+  <section class="cta-band" id="contact">
+    <div class="wrap cta-inner reveal">
+      <h2>Want to see one made for <em>your</em> business?</h2>
+      <p>Email us your business name. A real person reads and answers every message.</p>
+      <a class="btn btn-light" href="mailto:contact@aistudious.ca?subject=Free%20sample%20ad">contact@aistudious.ca</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-row">
+    <span>&copy; 2026 AI Studious</span>
+    <span>Greater Toronto Area, Ontario</span>
+  </div>
+</footer>
+<script src="main.js" defer></script>
 </body>
 </html>
