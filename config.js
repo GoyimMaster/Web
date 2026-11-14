@@ -3,9 +3,9 @@
    Example: reel: { src: "videos/reel.mp4", poster: "videos/reel.jpg", title: "Showreel" } */
 window.SITE = {
   email: "contact@aistudious.ca",
-  calendly: "",        // e.g. "https://calendly.com/your-name/intro-call"  (empty = buttons lead to the contact form)
-  formEndpoint: "",    // e.g. "https://formspree.io/f/abcdwxyz" or "https://api.web3forms.com/submit" (empty = opens the visitor's email app)
-  formAccessKey: "",   // only for Web3Forms
+  calendly: "https://calendly.com/aistudious138/30min",        // e.g. "https://calendly.com/your-name/intro-call"  (empty = buttons lead to the contact form)
+  formEndpoint: "https://api.web3forms.com/submit",    // e.g. "https://formspree.io/f/abcdwxyz" or "https://api.web3forms.com/submit" (empty = opens the visitor's email app)
+  formAccessKey: "8ee7c503-3ca3-413d-9f02-11edbebb52df",   // only for Web3Forms
   videos: {
     reel: { src: "", poster: "", title: "Showreel" },
     w1: { src: "", poster: "", title: "", tag: "" },
