@@ -148,7 +148,7 @@ dialog#lightbox::backdrop{background:rgba(10,6,14,.88);backdrop-filter:blur(6px)
 .card h3{margin:14px 0 8px}.card p{color:var(--muted);position:relative;z-index:1}
 .steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s}
 .st{padding:28px 24px 8px;border-left:1px solid rgba(233,203,126,.25)}
-.st .num{font-family:var(--display);font-weight:900;font-size:clamp(48px,6vw,84px);line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--gold2)}
+.st .num{font-family:var(--display);font-weight:900;font-size:clamp(48px,6vw,84px);line-height:1;color:var(--gold2);letter-spacing:.04em;background:linear-gradient(180deg,#F6E3A6,#C29A45);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .st:hover .num{color:var(--gold2)}.st .num{transition:color .4s}
 .st h3{margin:18px 0 8px}.st p{color:#B9AFA2;font-size:15.5px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
