@@ -2,6 +2,8 @@
 """Builds the static pages and the art sprite. Run: python3 build.py  (settings live in config.js, not here)."""
 import math, random
 from pathlib import Path
+import time
+VER = time.strftime("%y%m%d%H%M")
 OUT = Path(__file__).parent
 
 # ---------- art sprite ----------
@@ -32,6 +34,17 @@ def splash(seed, n=20, base=58):
         drops += f'<circle cx="{r * math.cos(a):.1f}" cy="{r * math.sin(a):.1f}" r="{rnd.uniform(1.5, 6):.1f}"/>'
     return f'<path d="{d}Z"/>{drops}'
 
+def iris(r=41, k=15):
+    out = ""
+    for i in range(6):
+        a, b = math.radians(60 * i), math.radians(60 * (i + 1))
+        px, py, qx, qy = k * math.cos(a), k * math.sin(a), k * math.cos(b), k * math.sin(b)
+        dx, dy = qx - px, qy - py; n = math.hypot(dx, dy); dx, dy = dx / n, dy / n
+        bb = px * dx + py * dy; t = -bb + math.sqrt(bb * bb - (k * k - r * r))
+        out += f'<path d="M{50 + px:.1f} {50 + py:.1f}L{50 + px + t * dx:.1f} {50 + py + t * dy:.1f}"/>'
+    hexa = "L".join(f"{50 + k * math.cos(math.radians(60 * i)):.1f} {50 + k * math.sin(math.radians(60 * i)):.1f}" for i in range(6))
+    return f'<g stroke="#16121b" stroke-width="3.5" stroke-linecap="round">{out}</g><path d="M{hexa}Z" fill="#16121b"/>'
+INK = 'stroke="#16121b" stroke-width="4" stroke-linejoin="round"'
 flutes = "".join(f'<rect x="{13 + i * 7}" y="22" width="2.4" height="254" style="fill:var(--m2,#cfc4ad)"/>' for i in range(5))
 hair = "".join(f'<circle cx="{62 + i * 9.5:.1f}" cy="{62 - 14 * math.sin(math.pi * i / 8):.1f}" r="11"/>' for i in range(9))
 SYMS = {
@@ -40,8 +53,12 @@ SYMS = {
  "column": ('0 0 60 300', f'<g style="fill:var(--m1,#f4efe6)"><rect width="60" height="10"/><rect x="5" y="10" width="50" height="9" rx="4"/><rect x="10" y="19" width="40" height="261"/><rect x="5" y="280" width="50" height="8" rx="3"/><rect y="288" width="60" height="12"/></g>{flutes}<rect x="42" y="19" width="8" height="261" style="fill:var(--m2,#cfc4ad)" opacity=".55"/>'),
  "pediment": ('0 0 400 90', '<path d="M0 72 200 2l200 70z" style="fill:var(--m1,#f4efe6)"/><path d="M40 66 200 12l160 54z" style="fill:var(--m2,#cfc4ad)"/><rect y="72" width="400" height="8" style="fill:var(--m1,#f4efe6)"/><rect y="80" width="400" height="10" style="fill:var(--m2,#cfc4ad)"/><circle cx="200" cy="46" r="11" style="fill:var(--m1,#f4efe6)"/>'),
  "bust": ('0 0 200 260', f'<g style="fill:var(--m1,#f7f3eb)"><rect x="52" y="226" width="96" height="34" rx="2"/><path d="M26 228q8-58 54-62h40q46 4 54 62z"/><rect x="83" y="128" width="34" height="46"/><ellipse cx="100" cy="94" rx="39" ry="49"/>{hair}<circle cx="60" cy="96" r="8"/><circle cx="140" cy="96" r="8"/></g><g style="fill:var(--m2,#d5cab4)" opacity=".45"><path d="M100 45a39 49 0 0 1 0 98z"/><rect x="100" y="128" width="17" height="40"/><path d="M100 166h20q46 4 54 62h-74z"/><rect x="100" y="226" width="48" height="34"/></g><path d="M100 96l-6 20h11" fill="none" stroke="#b9ad96" stroke-width="2.5" stroke-linecap="round"/><path d="M88 127q12 5 24 0" fill="none" stroke="#b9ad96" stroke-width="2.5" stroke-linecap="round"/><g fill="#c29a45">{wreath(100, 84, 43, 4, 9, 3.4, 100, 62)}</g><g><rect x="60" y="82" width="36" height="20" rx="7" fill="#16121b"/><rect x="104" y="82" width="36" height="20" rx="7" fill="#16121b"/><rect x="94" y="86" width="12" height="4" fill="#16121b"/><rect x="63" y="85" width="30" height="6" rx="3" style="fill:var(--neon,#ff2e88)"/><rect x="107" y="85" width="30" height="6" rx="3" style="fill:var(--neon2,#19e3d2)"/></g>'),
- "sneaker": ('0 0 240 150', '<path d="M10 112h222q5 22-17 24H30q-22 0-20-24z" fill="#fff"/><path d="M12 121h221" stroke="#16121b" stroke-width="3"/><path d="M18 112l4-54q2-20 22-20h28q8 0 12 9l12 23q34 14 74 18 44 4 60 24z" style="fill:var(--a,#ff2e88)"/><path d="M178 89q44 5 52 23h-60q-2-14 8-23z" style="fill:var(--b,#c6ff3d)"/><path d="M18 112l3-40h30q6 22-3 40z" style="fill:var(--b,#c6ff3d)"/><path d="M26 46q22-14 52-3l-4 9q-24-8-44 2z" fill="#16121b"/><circle cx="112" cy="94" r="11" style="fill:var(--c,#2d7bff)"/><g stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M86 52l14-5M94 62l15-5M104 71l15-4M118 77l14-3M133 82l13-2"/></g>'),
- "ball": ('0 0 100 100', '<circle cx="50" cy="50" r="48" fill="#ff7a1a"/><g fill="none" stroke="#16121b" stroke-width="3"><path d="M2 50h96M50 2v96M16 16q26 34 0 68M84 16q-26 34 0 68"/></g>'),
+ "phone": ('0 0 80 140', '<rect x="3" y="3" width="74" height="134" rx="15" fill="#16121b"/><rect x="9" y="13" width="62" height="114" rx="8" style="fill:var(--a,#ff2e88)"/><path d="M9 92 71 40v79q0 8-8 8H17q-8 0-8-8z" style="fill:var(--b,#2d7bff)" opacity=".55"/><rect x="29" y="6" width="22" height="4" rx="2" fill="#4a4252"/><circle cx="40" cy="64" r="19" fill="#fff"/><path d="M34 53v22l18-11z" fill="#16121b"/><rect x="15" y="104" width="30" height="5" rx="2.5" fill="#fff"/><rect x="15" y="113" width="20" height="5" rx="2.5" fill="#fff" opacity=".65"/><circle cx="61" cy="98" r="5" style="fill:var(--c,#c6ff3d)"/><circle cx="61" cy="113" r="5" fill="#fff"/>'),
+ "heart": ('0 0 100 94', f'<path d="M50 89C18 63 4 45 4 28 4 13 15 4 28 4c9 0 17 5 22 13C55 9 63 4 72 4c13 0 24 9 24 24 0 17-14 35-46 61z" style="fill:var(--a,#ff2e88)" {INK}/><path d="M19 28q2-11 12-12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".85"/>'),
+ "aperture": ('0 0 100 100', f'<circle cx="50" cy="50" r="48" fill="#16121b"/><circle cx="50" cy="50" r="41" style="fill:var(--a,#19e3d2)"/>{iris()}<circle cx="45" cy="45" r="3.5" fill="#fff"/>'),
+ "megaphone": ('0 0 130 100', f'<rect x="32" y="58" width="15" height="34" rx="5" fill="#16121b"/><path d="M14 36h26l50-28v84L40 64H14q-8 0-8-8V44q0-8 8-8z" style="fill:var(--a,#ff7a1a)" {INK}/><path d="M40 36v28" stroke="#16121b" stroke-width="4"/><ellipse cx="90" cy="50" rx="7" ry="42" fill="#16121b"/><g fill="none" stroke-linecap="round" stroke-width="6" style="stroke:var(--b,#c6ff3d)"><path d="M106 34q9 16 0 32"/><path d="M117 22q16 28 0 56"/></g>'),
+ "eye": ('0 0 120 84', f'<path d="M4 42Q60-18 116 42 60 102 4 42z" fill="#fff" {INK}/><circle cx="60" cy="42" r="23" style="fill:var(--a,#2d7bff)"/><circle cx="60" cy="42" r="11" fill="#16121b"/><circle cx="67" cy="34" r="4.5" fill="#fff"/>'),
+ "rise": ('0 0 100 100', f'<g style="fill:var(--a,#c6ff3d)" {INK}><rect x="8" y="64" width="18" height="30" rx="3"/><rect x="36" y="48" width="18" height="46" rx="3"/><rect x="64" y="32" width="18" height="62" rx="3"/></g><g fill="none" style="stroke:var(--b,#ff2e88)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 42 36 22l14 10L88 8"/><path d="M68 6h22v22"/></g>'),
  "coin": ('0 0 100 100', f'<circle cx="50" cy="50" r="48" fill="#c29a45"/><circle cx="50" cy="50" r="42" fill="#e9cb7e"/><circle cx="50" cy="50" r="42" fill="none" stroke="#a97f2e" stroke-width="2" stroke-dasharray="2 5"/><path d="M40 30v40l32-20z" fill="#a97f2e"/>'),
  "bolt": ('0 0 60 100', '<path d="M38 0 4 56h22l-8 44 38-60H32z" style="fill:var(--a,#c6ff3d)" stroke="#16121b" stroke-width="3" stroke-linejoin="round"/>'),
  "clapper": ('0 0 120 100', '<rect x="6" y="36" width="108" height="60" rx="6" fill="#16121b"/><g transform="rotate(-12 8 30)"><rect x="6" y="14" width="108" height="20" rx="4" fill="#16121b"/><path d="M18 14l-10 20M44 14 34 34M70 14 60 34M96 14 86 34" stroke="#fff" stroke-width="9"/></g><path d="M50 52v30l26-15z" style="fill:var(--a,#ff2e88)"/>'),
@@ -85,7 +102,7 @@ def page(fname, title, desc, body):
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v={VER}">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"ProfessionalService","name":"AI Studious","url":"https://aistudious.ca","email":"contact@aistudious.ca","areaServed":"Greater Toronto Area","description":"Video studio for small businesses in the Greater Toronto Area."}}</script>
 </head>
 <body{dark_top}>
@@ -101,7 +118,7 @@ def page(fname, title, desc, body):
 <div><h4>Contact</h4><ul><li><a data-email></a></li><li><a data-calendly href="contact.html">Book a call</a></li><li>2160 Hwy 7, Ste 6 #1521, Vaughan, ON</li></ul></div>
 </div><div class="foot-base"><span>&copy; 2026 AI Studious</span><span>Our videos are produced with AI-assisted tools and labelled where platforms ask for it.</span><span>Paintings: Thomas Cole, The Course of Empire (1836); Giovanni Paolo Panini, Ancient Rome (1757). Public domain.</span></div></div></footer>
 <dialog id="lightbox"><button class="lb-x" aria-label="Close">&times;</button><div class="lb-body"></div></dialog>
-<script src="config.js"></script><script src="main.js" defer></script>
+<script src="config.js?v={VER}"></script><script src="main.js?v={VER}" defer></script>
 </body></html>'''
 
 def form(kind, cta):
@@ -139,8 +156,9 @@ home = f'''
     {pop("splash3","flat",l=85,t=60,w=20,dx=8,dy=-16,s1=1.8,r1=24,i=2).replace('class="pop flat"','class="pop flat" color="#c6ff3d"')}
   </div>
   <div class="pops" style="--z:5">
-    {pop("sneaker",l=82,t=80,w=25,ar="240/150",dx=10,dy=-26,s0=1,s1=2,r0=-16,r1=-36,i=3)}
-    {pop("ball","hide-m",l=14,t=50,w=8,dx=-12,dy=-34,s1=2.4,r1=140,i=4)}
+    {pop("phone",l=83,t=76,w=10,ar="80/140",dx=10,dy=-26,s0=1,s1=1.9,r0=10,r1=24,i=3)}
+    {pop("heart","hide-m",l=89,t=57,w=6,ar="100/94",dx=10,dy=-20,s1=2.2,r0=12,r1=-14,i=8)}
+    {pop("megaphone","hide-m",l=15,t=62,w=10,ar="130/100",dx=-12,dy=-30,s1=2,r0=-14,r1=-30,i=4)}
     {pop("coin","hide-m",l=8,t=30,w=6,dx=-6,dy=-30,s1=2,r1=-40,i=5)}
     {pop("bolt",l=24,t=84,w=6,ar="60/100",dx=-10,dy=-20,s1=2.2,r0=-14,r1=10,i=6)}
     {pop("clapper","hide-m",l=92,t=34,w=8,ar="120/100",dx=10,dy=-30,s1=2,r0=10,r1=-18,i=7)}
@@ -179,8 +197,10 @@ home = f'''
     <h2>See it <span class="hl lime">move</span></h2>
     <div class="screen"><div class="vslot" data-slot="reel" data-inline></div></div>
     <div class="pops">
-      {pop("sneaker","fade",l=50,t=60,w=20,ar="240/150",dx=44,dy=30,s0=.2,s1=2.1,r0=20,r1=-24,o=1.2)}
-      {pop("ball","fade",l=50,t=60,w=8,dx=-46,dy=-32,s0=.2,s1=2.6,r1=220,o=1.8)}
+      {pop("phone","fade",l=50,t=60,w=9,ar="80/140",dx=44,dy=26,s0=.2,s1=2.1,r0=-10,r1=18,o=1.2)}
+      {pop("aperture","fade hide-m",l=50,t=60,w=7,dx=22,dy=44,s0=.2,s1=2.2,r1=120,o=2.1)}
+      {pop("eye","fade hide-m",l=50,t=60,w=9,ar="120/84",dx=-16,dy=44,s0=.2,s1=2,r0=10,r1=-8,o=3)}
+      {pop("heart","fade",l=50,t=60,w=7,ar="100/94",dx=-46,dy=-32,s0=.2,s1=2.4,r0=-30,r1=14,o=1.8)}
       {pop("coin","fade",l=50,t=60,w=6,dx=44,dy=-36,s0=.2,s1=2.4,r1=-120,o=2.4)}
       {pop("bolt","fade",l=50,t=60,w=6,ar="60/100",dx=-44,dy=34,s0=.2,s1=2.4,r0=-40,r1=16,o=2.8)}
       {pop("clapper","fade hide-m",l=50,t=60,w=9,ar="120/100",dx=-50,dy=2,s0=.2,s1=1.8,r0=30,r1=-14,o=3.4)}
@@ -246,7 +266,7 @@ home = f'''
 
 work = f'''
 <section class="page-hero painted dark" data-scene="exit">{bg("gallery","s-dark",True)}<div class="wrap"><p class="eyebrow">Work</p><h1>Videos we&rsquo;ve <span class="hl">made</span></h1><p class="lead">New pieces are added here as they are finished.</p></div></section>
-<section class="sec marble" style="padding-top:0"><div class="wrap"><div class="grid3">
+<section class="sec marble" style="padding-top:clamp(36px,6vh,72px)"><div class="wrap"><div class="grid3">
 <div class="vslot wide rv" data-slot="reel"></div>
 {"".join(f'<div class="vslot rv" style="--d:{(i % 3) * 100}ms" data-slot="w{i + 1}"></div>' for i in range(9))}
 </div></div></section>
@@ -255,7 +275,7 @@ work = f'''
 free = f'''
 <section class="page-hero offer sec painted dark" data-scene="exit">{bg("gallery","s-purple",True)}<div class="wrap offer-grid">
 <div><p class="eyebrow">For small businesses in the GTA</p><h1>One video. Built for you. <span class="hl lime">Free.</span></h1><p class="lead">See what we can do for your business before you spend anything.</p></div>
-<div class="ticket" aria-hidden="true">{pop("burst","",w=26,s0=1,s1=1.5,r0=-10,r1=40)}<div class="pop" style="--w:26;--s0:1;--s1:1.5;--r0:-12;--r1:6;display:grid;place-content:center;text-align:center;color:#16121b;filter:none"><b class="display" style="font-size:clamp(36px,5.6vw,80px);font-weight:900;line-height:.9">Free</b><span style="font-weight:700;letter-spacing:.14em;font-size:clamp(10px,1vw,14px);text-transform:uppercase">one video</span></div>{pop("sneaker","",l=80,t=84,w=16,ar="240/150",s1=1.6,dx=6,dy=-10,r0=-14,r1=-30)}</div>
+<div class="ticket" aria-hidden="true">{pop("burst","",w=26,s0=1,s1=1.5,r0=-10,r1=40)}<div class="pop" style="--w:26;--s0:1;--s1:1.5;--r0:-12;--r1:6;display:grid;place-content:center;text-align:center;color:#16121b;filter:none"><b class="display" style="font-size:clamp(36px,5.6vw,80px);font-weight:900;line-height:.9">Free</b><span style="font-weight:700;letter-spacing:.14em;font-size:clamp(10px,1vw,14px);text-transform:uppercase">one video</span></div>{pop("phone","",l=84,t=80,w=8,ar="80/140",s1=1.6,dx=6,dy=-10,r0=8,r1=20)}</div>
 </div></section>
 <section class="sec marble"><div class="wrap two">
 <div><h2 class="rv">How the offer works</h2>
@@ -265,7 +285,7 @@ free = f'''
 
 contact = f'''
 <section class="page-hero painted dark" data-scene="exit">{bg("fall","s-dark",True,"50% 40%")}<div class="wrap"><p class="eyebrow">Contact</p><h1>Let&rsquo;s <span class="hl blue">talk</span></h1><p class="lead">Send an inquiry or pick a time for a call. A real person answers every message. You can also write to <a data-email style="border-bottom:1px solid"></a>.</p></div></section>
-<section class="sec marble" style="padding-top:0"><div class="wrap two">
+<section class="sec marble" style="padding-top:clamp(36px,6vh,72px)"><div class="wrap two">
 <div><h2 class="rv" style="font-size:clamp(24px,3vw,36px);margin-bottom:18px">Send an inquiry</h2>{form("Inquiry", "Send inquiry")}</div>
 <div><h2 class="rv" style="font-size:clamp(24px,3vw,36px);margin-bottom:18px">Book a call</h2><div class="cal-inline rv"></div></div>
 </div></section>'''

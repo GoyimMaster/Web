@@ -223,8 +223,8 @@ form.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#FBF
 .painted::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),radial-gradient(120% 90% at 50% 40%,transparent 55%,rgba(8,4,10,.75) 100%);background-blend-mode:normal}
 .s-hero{background:linear-gradient(180deg,rgba(14,9,18,.84) 0,rgba(14,9,18,.62) 34%,rgba(14,9,18,.2) 60%,rgba(14,9,18,.28) 80%,rgba(14,9,18,.88) 100%)}
 .s-dark{background:linear-gradient(180deg,rgba(14,9,18,.82),rgba(14,9,18,.66) 50%,rgba(14,9,18,.86))}
-.s-darker{background:linear-gradient(180deg,rgba(14,9,18,.93),rgba(14,9,18,.86) 50%,rgba(14,9,18,.94))}
-.s-purple{background:linear-gradient(160deg,rgba(104,36,124,.84),rgba(60,18,76,.9) 50%,rgba(26,8,34,.95))}
+.s-darker{background:linear-gradient(180deg,rgba(14,9,18,.84),rgba(14,9,18,.7) 50%,rgba(14,9,18,.88))}
+.s-purple{background:linear-gradient(160deg,rgba(104,36,124,.6),rgba(60,18,76,.7) 50%,rgba(26,8,34,.86))}
 .painted .lead{color:#E6DCCD}.painted .eyebrow{color:var(--gold2)}
 .painted h1,.painted h2{text-shadow:0 2px 24px rgba(8,4,10,.55)}
 .hero.painted{background:var(--ink)}
@@ -234,6 +234,7 @@ form.inquiry{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#FBF
 .page-hero.painted{margin-top:-72px;padding-top:calc(72px + clamp(60px,10vh,120px))}
 .offer.painted,.cta.painted{background:var(--ink)}
 .pin-inner.painted{overflow:clip}
+@media (prefers-reduced-motion:no-preference){.pin-inner.painted{position:sticky}}
 .dark-top .head:not(.solid) .burger{color:var(--marble)}
 .painted .st{border-left-color:rgba(233,203,126,.35)}
 /* gilded frames: videos hang like paintings in a gallery */
